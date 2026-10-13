@@ -92,7 +92,7 @@ export default function HrDashboard() {
               <div style={{ padding: '8px', backgroundColor: '#eff6ff', borderRadius: '10px', color: '#2563eb' }}>
                 <UserPlus size={20} />
               </div>
-              <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>จัดการผู้ใช้งานและสิทธิ์ (UC-14)</h3>
+              <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>จัดการผู้ใช้งานและสิทธิ์ </h3>
             </div>
             <p style={{ fontSize: '13.5px', color: '#64748b', margin: '0 0 16px' }}>
               เพิ่ม แก้ไข ลบ บัญชีผู้ใช้งานกลาง (User Supertype) พร้อม Subtypes (Trainee, Trainer, HR) และกำหนดสิทธิ์การเข้าถึงระบบ
@@ -125,7 +125,7 @@ export default function HrDashboard() {
               <div style={{ padding: '8px', backgroundColor: '#ecfdf5', borderRadius: '10px', color: '#059669' }}>
                 <FileCheck size={20} />
               </div>
-              <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>รายงาน Probation & สนับสนุนการตัดสินใจ (UC-15 & UC-16)</h3>
+              <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>รายงาน Probation & สนับสนุนการตัดสินใจ </h3>
             </div>
             <p style={{ fontSize: '13.5px', color: '#64748b', margin: '0 0 16px' }}>
               ประมวลผลคะแนนฝึกอบรม 60 วันแรก ระบบแนะนำผลการประเมิน (Decision Support BR-2) และส่งออกรายงานเป็น PDF หรือ Excel

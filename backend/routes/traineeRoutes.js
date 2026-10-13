@@ -260,6 +260,13 @@ router.post('/submit', async (req, res) => {
 // ผลประเมินและ Feedback ทั้งหมดของ Trainee
 router.get('/evaluations/:traineeId', async (req, res) => {
   try {
+    let realTraineeId = Number(req.params.traineeId);
+    const [tr] = await db.query('SELECT Trainee_ID FROM Trainee WHERE Trainee_ID = ?', [realTraineeId]);
+    if (!tr.length) {
+      const [byUser] = await db.query('SELECT Trainee_ID FROM Trainee WHERE User_ID = ?', [realTraineeId]);
+      if (byUser.length) realTraineeId = byUser[0].Trainee_ID;
+    }
+
     const [rows] = await db.query(
       `SELECT s.Submission_ID, a.Assignment_ID, a.Title, a.Category, s.Version_No, s.Submitted_At,
               s.Status AS Submission_Status,
@@ -272,7 +279,7 @@ router.get('/evaluations/:traineeId', async (req, res) => {
        LEFT JOIN TrainerBA tr ON tr.Trainer_ID = e.Trainer_ID
        WHERE s.Trainee_ID = ?
        ORDER BY s.Submitted_At DESC, s.Submission_ID DESC`,
-      [req.params.traineeId]
+      [realTraineeId]
     );
     res.json(rows);
   } catch (err) {

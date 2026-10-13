@@ -40,13 +40,34 @@ export default function EvaluateTask() {
       setDevScore(3.0);
       setBizScore(3.0);
       setCommScore(3.0);
-      setFeedbackNote(`ตรวจงาน ${selectedSub.AssignmentTitle} (ครั้งที่ ${selectedSub.Version_No}) ผ่านเกณฑ์เรียบร้อย โครงสร้างและ Business Logic ถูกต้อง`);
+      setFeedbackNote(`ตรวจงาน ${selectedSub.AssignmentTitle} (ครั้งที่ ${selectedSub.Version_No}) ผ่านเกณฑ์มาตรฐานเรียบร้อย โครงสร้างและ Business Logic ถูกต้อง`);
     }
   }, [selectedSub]);
 
   // BR-1: ทุกด้านต้อง >= 2.00 ถึงจะ Passed
   const isPassed = devScore >= BR_PASS && bizScore >= BR_PASS && commScore >= BR_PASS;
   const avgScore = ((devScore + bizScore + commScore) / 3).toFixed(2);
+
+  const handleAutoSuggestFeedback = () => {
+    if (!selectedSub) return;
+    if (isPassed) {
+      setFeedbackNote(`ตรวจงาน ${selectedSub.AssignmentTitle} (ครั้งที่ ${selectedSub.Version_No}) ผ่านเกณฑ์มาตรฐาน BR-1 (คะแนนเฉลี่ย ${avgScore}/4.00) โครงสร้างและตรรกะธุรกิจถูกต้อง ครอบคลุมตามข้อกำหนด`);
+    } else {
+      const failedAspects = [];
+      if (devScore < BR_PASS) failedAspects.push(`Development (${devScore.toFixed(2)})`);
+      if (bizScore < BR_PASS) failedAspects.push(`Business Logic (${bizScore.toFixed(2)})`);
+      if (commScore < BR_PASS) failedAspects.push(`Communication (${commScore.toFixed(2)})`);
+      setFeedbackNote(`ตรวจงาน ${selectedSub.AssignmentTitle} (ครั้งที่ ${selectedSub.Version_No}) ยังไม่ผ่านเกณฑ์มาตรฐาน BR-1 (คะแนนเฉลี่ย ${avgScore}/4.00) มีด้านที่ต่ำกว่า 2.00 ได้แก่ ${failedAspects.join(', ')} กรุณาปรับปรุงตามคำแนะนำและส่งงานใหม่อีกครั้ง`);
+    }
+  };
+
+  const applyPreset = (text) => {
+    if (!feedbackNote.trim()) {
+      setFeedbackNote(text);
+    } else {
+      setFeedbackNote(prev => `${prev} | ${text}`);
+    }
+  };
 
   const handleSubmitEvaluation = async (e) => {
     e.preventDefault();
@@ -86,7 +107,7 @@ export default function EvaluateTask() {
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Award size={26} color="#d97706" />
-          <span>ศูนย์ตรวจและประเมินผลงานตามเกณฑ์ Rubric (UC-10, BR-1)</span>
+          <span>ศูนย์ตรวจและประเมินผลงานตามเกณฑ์ Rubric </span>
         </h1>
         <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
           บันทึกผลการประเมิน 3 มิติ (Development, Business Logic, Communication) คะแนน 1.00 – 4.00 พร้อมให้ Feedback
@@ -306,11 +327,95 @@ export default function EvaluateTask() {
                   </div>
                 </div>
 
-                {/* Feedback Note Textarea */}
+                {/* Feedback Note Textarea & Quick Presets */}
                 <div style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px', color: '#334155' }}>
-                    💬 ข้อเสนอแนะและคำแนะนำ (Feedback Note บันทึกลงตาราง Feedback)
-                  </label>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '13px', fontWeight: 'bold', color: '#334155' }}>
+                      💬 ข้อเสนอแนะและคำแนะนำ (Feedback Note)
+                    </label>
+                    <button
+                      type="button"
+                      onClick={handleAutoSuggestFeedback}
+                      style={{
+                        padding: '4px 10px',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        backgroundColor: isPassed ? '#ecfdf5' : '#fef2f2',
+                        color: isPassed ? '#047857' : '#b91c1c',
+                        border: `1px solid ${isPassed ? '#a7f3d0' : '#fecaca'}`,
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      ✨ แนะนำข้อความตามคะแนนอัตโนมัติ ({isPassed ? 'ผ่านเกณฑ์' : 'ต้องแก้ไข'})
+                    </button>
+                  </div>
+
+                  {/* Preset Pills */}
+                  <div style={{ marginBottom: '10px' }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', marginBottom: '4px', fontWeight: '600' }}>
+                      ⚡ คลิกเพื่อเพิ่มข้อความสำเร็จรูป:
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {isPassed ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('โครงสร้างและ Business Logic ถูกต้องครบถ้วน')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #bbf7d0', backgroundColor: '#f0fdf4', color: '#166534', cursor: 'pointer' }}
+                          >
+                            + โครงสร้างและ Logic ถูกต้อง
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('การออกแบบเป็นระบบและครอบคลุม Edge Cases ได้ดี')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #bbf7d0', backgroundColor: '#f0fdf4', color: '#166534', cursor: 'pointer' }}
+                          >
+                            + ครอบคลุม Edge Cases ดีเยี่ยม
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('พร้อมต่อยอดสู่บทถัดไป')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #bbf7d0', backgroundColor: '#f0fdf4', color: '#166534', cursor: 'pointer' }}
+                          >
+                            + พร้อมต่อยอดสู่บทถัดไป
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('ยังขาด Error Handling และกรณีทดสอบ (Edge Cases)')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #fecaca', backgroundColor: '#fef2f2', color: '#991b1b', cursor: 'pointer' }}
+                          >
+                            + ขาด Error Handling
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('Business Logic ยังไม่ครบถ้วน ขาดขั้นตอน Rollback เมื่อเกิดข้อผิดพลาด')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #fecaca', backgroundColor: '#fef2f2', color: '#991b1b', cursor: 'pointer' }}
+                          >
+                            + ขาดขั้นตอน Rollback
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => applyPreset('กรุณาปรับปรุงแผนภาพ/เอกสารให้ตรงตามมาตรฐานและส่งตรวจใหม่')}
+                            style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #fecaca', backgroundColor: '#fef2f2', color: '#991b1b', cursor: 'pointer' }}
+                          >
+                            + ปรับปรุงให้ตรงมาตรฐาน
+                          </button>
+                        </>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setFeedbackNote('')}
+                        style={{ padding: '3px 8px', fontSize: '11.5px', borderRadius: '6px', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc', color: '#64748b', cursor: 'pointer' }}
+                      >
+                        ล้างข้อความ
+                      </button>
+                    </div>
+                  </div>
+
                   <textarea
                     rows={3}
                     required
