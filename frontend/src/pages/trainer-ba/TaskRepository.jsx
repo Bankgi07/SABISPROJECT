@@ -157,7 +157,7 @@ export default function TaskRepository() {
         <div>
           <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
             <FolderKanban size={24} color="#f97316" />
-            <span>คลังสื่อการสอนและคลังโจทย์แบบฝึกหัด (UC-7 & UC-8)</span>
+            <span>คลังสื่อการสอนและคลังโจทย์แบบฝึกหัด </span>
           </h1>
           <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
             จัดการสื่อการเรียนรู้มาตรฐานและโจทย์แบบฝึกหัดสำหรับกำหนดในเส้นทางการเรียนรู้ (Training Roadmap)
@@ -182,7 +182,7 @@ export default function TaskRepository() {
             }}
           >
             <Plus size={16} />
-            <span>+ เพิ่มสื่อการสอนใหม่ (UC-7)</span>
+            <span>+ เพิ่มสื่อการสอนใหม่</span>
           </button>
         ) : (
           <button
@@ -202,7 +202,7 @@ export default function TaskRepository() {
             }}
           >
             <Plus size={16} />
-            <span>+ เพิ่มโจทย์แบบฝึกหัดใหม่ (UC-8)</span>
+            <span>+ เพิ่มโจทย์แบบฝึกหัดใหม่ </span>
           </button>
         )}
       </div>
@@ -240,7 +240,7 @@ export default function TaskRepository() {
           }}
         >
           <Video size={16} />
-          <span>คลังสื่อการสอน (Learning Materials - UC-7) [{materials.length}]</span>
+          <span>คลังสื่อการสอน (Learning Materials ) [{materials.length}]</span>
         </button>
 
         <button
@@ -260,7 +260,7 @@ export default function TaskRepository() {
           }}
         >
           <Layers size={16} />
-          <span>คลังโจทย์แบบฝึกหัด (Assignments - UC-8) [{assignments.length}]</span>
+          <span>คลังโจทย์แบบฝึกหัด (Assignments) [{assignments.length}]</span>
         </button>
       </div>
 
@@ -379,7 +379,7 @@ export default function TaskRepository() {
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
           <form onSubmit={handleSaveMaterial} style={{ backgroundColor: '#fff', borderRadius: '14px', padding: '24px', width: '480px', maxWidth: '90vw' }}>
             <h2 style={{ margin: '0 0 16px', fontSize: '18px', fontWeight: 'bold' }}>
-              {matModal === 'add' ? '+ เพิ่มสื่อการสอนใหม่ (UC-7)' : 'แก้ไขสื่อการสอน (UC-7)'}
+              {matModal === 'add' ? '+ เพิ่มสื่อการสอนใหม่ (UC-7)' : 'แก้ไขสื่อการสอน '}
             </h2>
             <div style={{ marginBottom: '14px' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px' }}>ชื่อสื่อการสอน / หัวข้อบทเรียน</label>
@@ -445,7 +445,7 @@ export default function TaskRepository() {
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
           <form onSubmit={handleSaveAssignment} style={{ backgroundColor: '#fff', borderRadius: '14px', padding: '24px', width: '500px', maxWidth: '90vw' }}>
             <h2 style={{ margin: '0 0 16px', fontSize: '18px', fontWeight: 'bold' }}>
-              {asgModal === 'add' ? '+ เพิ่มโจทย์แบบฝึกหัดใหม่ (UC-8)' : 'แก้ไขโจทย์แบบฝึกหัด (UC-8)'}
+              {asgModal === 'add' ? '+ เพิ่มโจทย์แบบฝึกหัดใหม่ ' : 'แก้ไขโจทย์แบบฝึกหัด '}
             </h2>
             <div style={{ marginBottom: '14px' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px' }}>ผูกกับสื่อการสอน (Material ID)</label>
