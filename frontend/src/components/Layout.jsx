@@ -1,10 +1,9 @@
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { Database, Shield, LogOut } from 'lucide-react';
+import { Shield, LogOut } from 'lucide-react';
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
-  const location = useLocation();
 
   let user = null;
   try {
@@ -93,30 +92,6 @@ export default function Layout({ children }) {
                 </span>
               </div>
             </div>
-
-            {/* Quick Link to Database Inspector (Only for HR and Trainer/BA) */}
-            {(user.role === 'HR' || user.role === 'Trainer') && (
-              <Link
-                to="/database"
-                style={{
-                  textDecoration: 'none',
-                  padding: '6px 14px',
-                  borderRadius: '8px',
-                  backgroundColor: location.pathname === '/database' ? '#1e293b' : '#f8fafc',
-                  color: location.pathname === '/database' ? '#ffffff' : '#334155',
-                  border: '1px solid #cbd5e1',
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  transition: 'all 0.15s'
-                }}
-              >
-                <Database size={14} color={location.pathname === '/database' ? '#38bdf8' : '#0284c7'} />
-                <span>ฐานข้อมูล 13 ตาราง</span>
-              </Link>
-            )}
           </div>
         </header>
 
