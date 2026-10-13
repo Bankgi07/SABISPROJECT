@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>คู่มือทบทวนการนำเสนอโครงงาน SA & BIS (TRAIN TMS - Dynamics Motion)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 16mm 14mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #1e293b;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+      margin-top: 0;
+      page-break-after: avoid;
+    }
+
+    .cover-header {
+      border-bottom: 3px solid #ea580c;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .badge-sub {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 4px 0 6px;
+    }
+
+    .subtitle {
+      font-size: 13.5px;
+      color: #64748b;
+    }
+
+    .section {
+      margin-bottom: 24px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      border-left: 4px solid #ea580c;
+      padding-left: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .card-highlight {
+      background-color: #fffaf5;
+      border: 1.5px solid #fdba74;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .card-success {
+      background-color: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .card-blue {
+      background-color: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+    }
+
+    td {
+      padding: 7px 10px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    .rule-pill {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+    .rule-br1 { background: #fee2e2; color: #b91c1c; }
+    .rule-br2 { background: #dcfce7; color: #15803d; }
+    .rule-br3 { background: #e0f2fe; color: #0369a1; }
+
+    .qna-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #2563eb;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .qna-q {
+      font-weight: 800;
+      color: #1e3a8a;
+      font-size: 13.5px;
+      margin-bottom: 4px;
+    }
+
+    .qna-a {
+      color: #334155;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background-color: #ea580c;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 11px;
+      margin-right: 6px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    ul, ol {
+      margin: 4px 0 8px 18px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= หน้า 1: ภาพรวมโครงการ & มิติ BIS / SA ================= -->
+  <div class="cover-header">
+    <span class="badge-sub">คู่มือทบทวนและเตรียมตัวพรีเซนต์ (Exam & Presentation Cheatsheet)</span>
+    <div class="title">ระบบจัดการการฝึกอบรมพนักงานใหม่ (TRAIN TMS)</div>
+    <div class="subtitle">กรณีศึกษา: บริษัท ไดนามิกส์ โมชั่น จำกัด (Dynamics Motion) · วิชา SA & BIS (System Analysis & Business Information Systems)</div>
+  </div>
+
+  <!-- ส่วนที่ 1: มิติเชิงธุรกิจ (BIS Perspective) -->
+  <div class="section">
+    <div class="section-title">1. มิติเชิงธุรกิจ (Business Information Systems - BIS)</div>
+    <div class="grid-2">
+      <div class="card">
+        <h4 style="margin:0 0 6px; color:#b91c1c;">🔴 สภาพปัญหาเดิมขององค์กร (AS-IS Problem)</h4>
+        <ul style="font-size: 12.5px; color: #475569;">
+          <li><strong>กระจัดกระจาย:</strong> ส่งงานผ่านอีเมล/แชต ขาดศูนย์กลางการจัดเก็บและติดตามสถานะ</li>
+          <li><strong>ไม่มีเกณฑ์ชัดเจน:</strong> ผู้ฝึกสอน (Trainer) ตรวจงานตามความรู้สึก ขาด Rubric มาตรฐาน</li>
+          <li><strong>HR ติดตามยาก:</strong> ประเมินช่วงทดลองงาน 60 วัน (Probation) ล่าช้า ไม่มีข้อมูลเชิงประจักษ์ (Empirical Evidence) สนับสนุนการตัดสินใจ</li>
+          <li><strong>เสี่ยงผิดพลาด:</strong> ปล่อยให้พนักงานใหม่เริ่มงานจริงโดยที่ตรรกะธุรกิจ (Business Logic) ยังไม่ผ่านเกณฑ์</li>
+        </ul>
+      </div>
+
+      <div class="card-success">
+        <h4 style="margin:0 0 6px; color:#15803d;">🟢 คุณค่าเชิงธุรกิจที่ระบบมอบให้ (TO-BE & Business Value)</h4>
+        <ul style="font-size: 12.5px; color: #166534;">
+          <li><strong>Centralized Platform:</strong> เชื่อม 3 Stakeholders (Trainee, Trainer, HR) ไว้ในระบบเดียว</li>
+          <li><strong>Quality Assurance:</strong> บังคับใช้เกณฑ์ Rubric 3 มิติ เพื่อรับประกันคุณภาพงาน</li>
+          <li><strong>Decision Support System (DSS):</strong> ระบบวิเคราะห์และแนะนำผลทดลองงานแบบเรียลไทม์ (BR-2)</li>
+          <li><strong>ลด Lead Time:</strong> ลดเวลาการสรุปผลการประเมินของ HR จากเดิม 1-2 สัปดาห์ เหลือเพียงไม่กี่วินาที</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ส่วนที่ 2: กฎทางธุรกิจหลัก 3 ข้อ (Core Business Rules) -->
+  <div class="section">
+    <div class="section-title">2. กฎทางธุรกิจหลัก (Core Business Rules - จำให้แม่น โดนถาม 100%)</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">กฎทางธุรกิจ</th>
+          <th style="width: 32%;">เงื่อนไขการทำงาน</th>
+          <th style="width: 50%;">ผลลัพธ์ในระบบ (System Enforcement)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rule-pill rule-br1">BR-1</span> <strong>Rubric Passing</strong></td>
+          <td>การตรวจงานแบ่งเป็น 3 มิติ:<br>• Development (โค้ด/เทคนิค)<br>• Business Logic (ตรรกะธุรกิจ)<br>• Communication (การสื่อสาร)<br><strong>ทุกด้านต้องได้คะแนน &ge; 2.00 / 4.00</strong></td>
+          <td>• ถ้าทุกด้าน &ge; 2.00 &rarr; <strong>Passed</strong> (ผ่านเกณฑ์)<br>• ถ้ามีแม้แต่ด้านเดียว &lt; 2.00 &rarr; <strong>Need_Revision</strong> (ต้องส่งแก้ไขใหม่)<br><em>*หมายเหตุ: แม้คะแนนเฉลี่ยรวมจะถึง 3.00 แต่ถ้ามีด้านใดตกเกณฑ์ ถือว่าตกทันที</em></td>
+        </tr>
+        <tr>
+          <td><span class="rule-pill rule-br2">BR-2</span> <strong>Probation DSS</strong></td>
+          <td>เกณฑ์การประเมินช่วงทดลองงาน 60 วันแรก:<br>• คะแนนเฉลี่ยสะสม 3 ด้าน &ge; 2.00<br>• ต้องผ่านบทเรียนครบตาม Roadmap</td>
+          <td>ระบบช่วย HR ตัดสินใจ (Decision Support):<br>• ผ่านเกณฑ์ครบ &rarr; แนะนำ <strong>Passed</strong> (สมควรบรรจุ)<br>• คะแนน &ge; 2.00 แต่ยังไม่ครบ &rarr; แนะนำ <strong>Extended</strong> (ขยายเวลา)<br>• คะแนนเฉลี่ย &lt; 2.00 &rarr; แนะนำ <strong>Failed</strong> (ไม่ผ่านทดลองงาน)</td>
+        </tr>
+        <tr>
+          <td><span class="rule-pill rule-br3">BR-3</span> <strong>Roadmap Unlocking</strong></td>
+          <td>เงื่อนไขการเรียนรู้แบบมีลำดับขั้น (Prerequisite Dependency)</td>
+          <td>• <strong>บทที่ 1 ปลดล็อกเสมอ</strong> พนักงานเริ่มเรียนได้ทันที<br>• <strong>บทถัดไป (Seq 2, 3...) จะถูกล็อกไว้ (Locked)</strong> และจะปลดล็อกอัตโนมัติก็ต่อเมื่อบทก่อนหน้าได้ผลประเมินว่า Passed แล้วเท่านั้น</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ส่วนที่ 3: สถาปัตยกรรมและโครงสร้างฐานข้อมูล (System Analysis & Design) -->
+  <div class="section">
+    <div class="section-title">3. สถาปัตยกรรมฐานข้อมูลเชิงสัมพันธ์ 13 ตาราง (Database Design)</div>
+    <div class="card-blue" style="margin-bottom: 10px;">
+      <strong>จุดเด่นการออกแบบ ER Diagram (ตอบอาจารย์เมื่อถูกถามเรื่อง Normalization & OOP):</strong>
+      <div style="font-size: 12px; margin-top: 4px; color: #1e3a8a;">
+        1. <strong>Supertype / Subtype Pattern:</strong> ตาราง <code>User</code> เป็น Supertype เก็บข้อมูล Login กลาง ส่วน <code>Trainee</code>, <code>TrainerBA</code>, <code>HR</code> เป็น Subtype เก็บข้อมูลเฉพาะบทบาท<br>
+        2. <strong>Audit Trail & Versioning:</strong> แยก <code>Submission</code> (รองรับการส่งงานหลายรอบ v1, v2...) ออกจาก <code>Evaluation</code> และ <code>Feedback</code> เพื่อเก็บประวัติการพัฒนาการอย่างสมบูรณ์
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">กลุ่มข้อมูล</th>
+          <th style="width: 25%;">ตารางในระบบ</th>
+          <th style="width: 50%;">หน้าที่และความสัมพันธ์หลัก</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. บัญชีและบทบาท</strong></td>
+          <td><code>User</code>, <code>Trainee</code>,<br><code>TrainerBA</code>, <code>HR</code></td>
+          <td>Supertype เก็บ Username, Password, Role แยก Subtype 1:1 เชื่อมด้วย Foreign Key (User_ID) ป้องกัน Data Redundancy</td>
+        </tr>
+        <tr>
+          <td><strong>2. สื่อและแบบฝึกหัด</strong></td>
+          <td><code>LearningMaterial</code>,<br><code>Assignment</code></td>
+          <td>คลังสื่อการเรียนรู้ (วิดีโอ/เอกสาร) 1 สื่อ ผูกกับโจทย์ฝึกปฏิบัติ 1 โจทย์ (1:1 / 1:M)</td>
+        </tr>
+        <tr>
+          <td><strong>3. แผนการเรียนรู้</strong></td>
+          <td><code>TrainingRoadmap</code>,<br><code>RoadmapItem</code></td>
+          <td>Roadmap ผูกพนักงานกับ Trainer และมี RoadmapItem เก็บ Assignment เรียงตามลำดับ Seq_No คุมด้วย BR-3</td>
+        </tr>
+        <tr>
+          <td><strong>4. การส่งงานและประเมิน</strong></td>
+          <td><code>Submission</code>,<br><code>SubmissionFile</code>,<br><code>Evaluation</code>,<br><code>Feedback</code></td>
+          <td>• Submission เก็บ Version_No (ครั้งที่ 1, 2...)<br>• SubmissionFile เก็บไฟล์/URL ลิงก์งาน<br>• Evaluation เก็บคะแนน 3 มิติ (Dev, Biz, Comm) + สถานะ BR-1<br>• Feedback เก็บคำแนะนำติชมของผู้ตรวจ</td>
+        </tr>
+        <tr>
+          <td><strong>5. สรุปผลทดลองงาน</strong></td>
+          <td><code>ProbationReport</code></td>
+          <td>เก็บประวัติการตัดสินใจของ HR อ้างอิงผลประเมินตามกฎ BR-2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ตัดขึ้นหน้าใหม่ -->
+  <div class="page-break"></div>
+
+  <!-- ส่วนที่ 4: Use Cases หลัก 16 Use Cases -->
+  <div class="section">
+    <div class="section-title">4. การแบ่งบทบาทและขอบเขตฟังก์ชัน (16 Functional Use Cases)</div>
+    <div class="grid-3">
+      <div class="card" style="border-top: 3px solid #2563eb;">
+        <h4 style="color:#2563eb; margin-bottom: 6px;">👨‍💻 Trainee (เด็กฝึกงาน)</h4>
+        <ul style="font-size: 12px; color: #334155;">
+          <li><strong>UC-1:</strong> เข้าสู่ระบบ (Authentication)</li>
+          <li><strong>UC-2:</strong> ดู Dashboard & Roadmap</li>
+          <li><strong>UC-3:</strong> ศึกษาเนื้อหาและสื่อการเรียน</li>
+          <li><strong>UC-4:</strong> ส่งงานแนบไฟล์และลิงก์ผลงาน</li>
+          <li><strong>UC-5:</strong> ดูผลคะแนนและ Feedback</li>
+          <li><strong>UC-6:</strong> ส่งงานแก้ไขใหม่ (Resubmit)</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-top: 3px solid #d97706;">
+        <h4 style="color:#d97706; margin-bottom: 6px;">🧑‍🏫 Trainer & BA (ผู้ฝึกสอน)</h4>
+        <ul style="font-size: 12px; color: #334155;">
+          <li><strong>UC-7:</strong> จัดการคลังสื่อการเรียนรู้</li>
+          <li><strong>UC-8:</strong> จัดการโจทย์แบบฝึกหัด</li>
+          <li><strong>UC-9:</strong> มอบหมาย Roadmap รายบุคคล</li>
+          <li><strong>UC-10:</strong> ตรวจสอบรายการงานที่ส่ง</li>
+          <li><strong>UC-11:</strong> ประเมินคะแนนตาม Rubric (BR-1)</li>
+          <li><strong>UC-12:</strong> ให้คำติชมและข้อเสนอแนะ</li>
+          <li><strong>UC-13:</strong> ติดตามผลพัฒนาการพนักงาน</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-top: 3px solid #059669;">
+        <h4 style="color:#059669; margin-bottom: 6px;">👔 HR (ฝ่ายบุคคล)</h4>
+        <ul style="font-size: 12px; color: #334155;">
+          <li><strong>UC-14:</strong> จัดการบัญชีผู้ใช้และสิทธิ์</li>
+          <li><strong>UC-15:</strong> รายงานวิเคราะห์ผลทดลองงาน</li>
+          <li><strong>UC-16:</strong> สนับสนุนการตัดสินใจ Probation</li>
+        </ul>
+        <div style="font-size: 11px; background: #ecfdf5; padding: 6px; border-radius: 6px; margin-top: 6px; color: #047857;">
+          ⚡ รองรับ Export รายงานเป็น PDF / Excel ทันที
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ส่วนที่ 5: แผนผังลำดับการนำเสนอ 15 นาที (Presentation Strategy) -->
+  <div class="section">
+    <div class="section-title">5. แผนการแบ่งเวลานำเสนอ 15 นาที (Time Allocation & Speaker Script)</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 14%;">ช่วงเวลา</th>
+          <th style="width: 26%;">หัวข้อที่นำเสนอ</th>
+          <th style="width: 42%;">รายละเอียดและคีย์เวิร์ดที่ต้องพูด</th>
+          <th style="width: 18%;">ผู้รับผิดชอบ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0:00 - 2:30</strong><br><span style="font-size:11px; color:#64748b;">(2.5 นาที)</span></td>
+          <td><strong>1. บทนำ & ปัญหาทางธุรกิจ (Problem & Business Rules)</strong></td>
+          <td>• ความเป็นมาของ Dynamics Motion<br>• ปัญหาเดิม (AS-IS) &gt; ข้อจำกัดของการประเมินแบบ Manual<br>• <strong>เน้นย้ำ Business Rules ทั้ง 3 ข้อ (BR-1, BR-2, BR-3)</strong></td>
+          <td>คนที่ 1 (เปิดหัว)</td>
+        </tr>
+        <tr>
+          <td><strong>2:30 - 6:00</strong><br><span style="font-size:11px; color:#64748b;">(3.5 นาที)</span></td>
+          <td><strong>2. System Analysis & Design</strong></td>
+          <td>• Use Case Diagram (3 บทบาท 16 Use Cases)<br>• DFD Context Diagram & Data Flow<br>• <strong>ER Diagram 13 ตาราง:</strong> ชี้ Supertype/Subtype และการเก็บ Versioning</td>
+          <td>คนที่ 2 (สถาปัตยกรรม)</td>
+        </tr>
+        <tr>
+          <td><strong>6:00 - 11:30</strong><br><span style="font-size:11px; color:#64748b;">(5.5 นาที)</span></td>
+          <td><strong>3. การสาธิตระบบจริง (Live Prototype Demo)</strong></td>
+          <td><strong>เดินตาม Storyboard ให้เห็น End-to-End Workflow:</strong><br>
+          1. <em>Trainee:</em> ล็อกอิน ดู Roadmap ปลดล็อกตาม BR-3 ส่งงานแนบลิงก์<br>
+          2. <em>Trainer:</em> เข้าศูนย์ตรวจงาน ให้คะแนน 3 มิติ กด Quick Presets ให้ Feedback<br>
+          3. <em>Trainee:</em> ดู Modal Pop-up Feedback สวยงาม ถ้าไม่ผ่านมีปุ่มส่งแก้ตัว<br>
+          4. <em>HR:</em> เข้าดู Dashboard ดูระบบ DSS แนะนำผล Probation และ Export PDF</td>
+          <td>คนที่ 3 & 4 (Demo ระบบ)</td>
+        </tr>
+        <tr>
+          <td><strong>11:30 - 15:00</strong><br><span style="font-size:11px; color:#64748b;">(3.5 นาที)</span></td>
+          <td><strong>4. สรุปผล & ช่วงตอบคำถามอาจารย์ (Q&A)</strong></td>
+          <td>• สรุปคุณค่าที่ระบบสร้างให้องค์กร (Business Impact)<br>• เตรียมพร้อมตอบคำถามรายบุคคล (Individual Assessment)</td>
+          <td>ทุกคนร่วมตอบ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ส่วนที่ 6: แนวคำถามสัมภาษณ์รายบุคคลที่อาจารย์จะถาม (Individual Assessment) -->
+  <div class="section">
+    <div class="section-title">6. แนวคำถามและแนวการตอบรายบุคคล (เก็งข้อสอบ Individual Assessment 10 คะแนน)</div>
+
+    <div class="qna-box">
+      <div class="qna-q">❓ คำถาม 1: "ทำไมถึงออกแบบตาราง User แยกเป็น Supertype และมี Trainee, TrainerBA, HR เป็น Subtype?"</div>
+      <div class="qna-a">
+        <strong>แนวทางตอบ:</strong> "เพราะต้องการลดความซ้ำซ้อนของข้อมูล (Normalization) ครับ โดยตาราง User จะเก็บเฉพาะข้อมูลยืนยันตัวตนกลาง (Username, Password, Role) ส่วนแต่ละบทบาทมีคุณลักษณะ (Attributes) ที่ไม่เหมือนกัน เช่น Trainee ต้องเก็บ Start_Date, Skill_Level ส่วน Trainer ต้องเก็บ Department การแยก Subtype ทำให้โครงสร้างฐานข้อมูลมีความยืดหยุ่น ปลอดภัย และเป็นไปตามหลัก Database Design มาตรฐานครับ"
+      </div>
+    </div>
+
+    <div class="qna-box">
+      <div class="qna-q">❓ คำถาม 2: "ทำไมต้องแยกตาราง Submission, Evaluation และ Feedback ออกจากกัน ไม่รวมในตารางเดียว?"</div>
+      <div class="qna-a">
+        <strong>แนวทางตอบ:</strong> "เพื่อรองรับการส่งงานซ้ำหลายรอบ (Versioning / Resubmission) ครับ พนักงาน 1 คน ใน 1 โจทย์ สามารถส่งงานได้หลายครั้ง (v1, v2, v3...) หากรวมในตารางเดียวจะไม่สามารถเก็บประวัติการส่งงานและผลการตรวจย้อนหลังได้ การแยกตารางทำให้ระบบเก็บประวัติการตรวจในแต่ละรอบ พร้อมคะแนน 3 มิติและ Feedback ของรอบนั้นๆ ได้อย่างเป็นระบบ เพื่อติดตามพัฒนาการของพนักงานครับ"
+      </div>
+    </div>
+
+    <div class="qna-box">
+      <div class="qna-q">❓ คำถาม 3: "Business Rule BR-1 ทำงานอย่างไร และระบบคุมความถูกต้องอย่างไรในโค้ด?"</div>
+      <div class="qna-a">
+        <strong>แนวทางตอบ:</strong> "BR-1 กำหนดเกณฑ์ผ่านว่าทุกทักษะ 3 มิติ (Development, Business Logic, Communication) ต้องได้คะแนนไม่ต่ำกว่า 2.00 เต็ม 4.00 ครับ ในระบบทั้งฝั่ง Backend และ Frontend จะมี Validation ตรวจสอบเงื่อนไข <code>devScore >= 2 && bizScore >= 2 && commScore >= 2</code> หากมีด้านใดด้านหนึ่งต่ำกว่า 2.00 ระบบจะปรับสถานะเป็น <code>Need_Revision</code> ทันที แม้คะแนนเฉลี่ยรวมจะสูงก็ตามครับ"
+      </div>
+    </div>
+
+    <div class="qna-box">
+      <div class="qna-q">❓ คำถาม 4: "ระบบนี้ถือว่าเป็นระบบสารสนเทศประเภทใดในมุมมองวิชา BIS?"</div>
+      <div class="qna-a">
+        <strong>แนวทางตอบ:</strong> "ระบบนี้ครอบคลุม 2 ระดับครับ ระดับปฏิบัติการคือเป็น <strong>TPS (Transaction Processing System)</strong> บันทึกการส่งงานและประเมินผลประจำวัน และระดับบริหารคือเป็น <strong>DSS / MIS (Decision Support System)</strong> สำหรับฝ่าย HR โดยนำผลการฝึกอบรม 60 วันแรกมาประมวลผลตามกฎ BR-2 เพื่อสนับสนุนการตัดสินใจในการบรรจุพนักงานช่วงทดลองงานอย่างเป็นรูปธรรมครับ"
+      </div>
+    </div>
+
+    <div class="qna-box">
+      <div class="qna-q">❓ คำถาม 5: "Requirement ข้อนี้ได้มาจากใคร และช่วยแก้ปัญหาอะไรในองค์กรจริง?"</div>
+      <div class="qna-a">
+        <strong>แนวทางตอบ:</strong> "ได้มาจากการสัมภาษณ์ผู้มีส่วนได้ส่วนเสีย (Stakeholder) จริงของ Dynamics Motion ครับ เช่น ฟังก์ชัน Feedback Modal และการส่งงานซ้ำ ได้มาจาก Trainee ที่อยากทราบจุดบกพร่องที่ชัดเจน ส่วนเกณฑ์ Rubric 3 ด้าน ได้มาจาก Trainer ที่ต้องการเกณฑ์ตรวจที่เป็นมาตรฐานเดียวกัน เพื่อไม่ให้เกิดความลำเอียงในการให้คะแนนครับ"
+      </div>
+    </div>
+  </div>
+
+  <!-- กล่องคำแนะนำทิ้งท้าย -->
+  <div class="card-highlight" style="margin-top: 14px;">
+    <div style="font-weight: 800; color: #9a3412; font-size: 13.5px; margin-bottom: 4px;">🎯 ข้อแนะนำสำคัญในวันพรีเซนต์เพื่อให้ได้คะแนนระดับ 4 (ดีเยี่ยม):</div>
+    <ol style="font-size: 12px; color: #7c2d12; margin-left: 18px;">
+      <li><strong>ทุกคนต้องพูด:</strong> เกณฑ์ระบุชัดเจนว่ามี 2 คะแนนสำหรับการมีส่วนร่วมของสมาชิกทุกคน และอาจโดนหักคะแนนหากบางคนไม่พูด</li>
+      <li><strong>โชว์ Live System จริง:</strong> สลับหน้าจอมาโชว์เว็บจริงเสมอ (ระบบเราเป็น Fullstack ที่รันได้จริง พร้อมข้อมูล 13 ตารางใน SQLite ไม่ใช่แค่สไลด์นิ่งๆ)</li>
+      <li><strong>เน้นย้ำความเชื่อมโยง:</strong> ย้ำว่า UI ทุกหน้าจอ และตารางฐานข้อมูลทุกตาราง สอดคล้องกับ Use Case และ Business Rules ในเอกสาร Proposal 100%</li>
+    </ol>
+  </div>
+
+</body>
+</html>
