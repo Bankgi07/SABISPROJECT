@@ -51,6 +51,7 @@ export default function Assignments() {
   const [notes, setNotes] = useState({});
   const [notice, setNotice] = useState(null);
   const [sending, setSending] = useState(false);
+  const [showOptionalSubmit, setShowOptionalSubmit] = useState({});
 
   const load = () => {
     if (!user?.profileId) return;
@@ -185,10 +186,20 @@ export default function Assignments() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
         {data.items.map((item) => {
           const isOpen = !!open[item.Item_ID];
-          const kind = !item.Unlocked ? 'Locked' : item.blockReason === 'WAITING' ? 'Waiting' : item.submitMode === 'resubmit' ? 'Need_Revision' : item.ItemStatus;
-          const id = item.Assignment_ID;
           const hasPassed = item.ItemStatus === 'Completed' || (item.latest && item.latest.EvalStatus === 'Passed');
           const isWaiting = item.latest && !item.latest.EvalStatus;
+          const isNeedRevision = item.latest && item.latest.EvalStatus === 'Need_Revision';
+          const id = item.Assignment_ID;
+
+          const kind = !item.Unlocked
+            ? 'Locked'
+            : hasPassed
+              ? 'Passed'
+              : isWaiting
+                ? 'Waiting'
+                : isNeedRevision
+                  ? 'Need_Revision'
+                  : item.ItemStatus || 'In_Progress';
 
           return (
             <div
@@ -197,7 +208,7 @@ export default function Assignments() {
                 ...card,
                 opacity: item.Unlocked ? 1 : 0.7,
                 border: item.Unlocked ? '1.5px solid #cbd5e1' : '1px dashed #cbd5e1',
-                borderLeft: item.Unlocked ? '5px solid #f97316' : '5px solid #94a3b8',
+                borderLeft: hasPassed ? '5px solid #10b981' : item.Unlocked ? '5px solid #f97316' : '5px solid #94a3b8',
                 padding: '20px 24px'
               }}
             >
@@ -345,38 +356,99 @@ export default function Assignments() {
 
                   {/* Status Banner */}
                   {hasPassed && (
-                    <div style={{ padding: '12px 16px', backgroundColor: '#ecfdf5', color: '#065f46', borderRadius: '8px', fontWeight: 'bold', fontSize: '13.5px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <CheckCircle size={18} color="#059669" />
-                      <span>✓ บทนี้ผ่านการประเมินแล้ว (Passed) — บทถัดไปได้รับการปลดล็อกเรียบร้อยแล้ว</span>
+                    <div style={{
+                      padding: '16px 20px',
+                      backgroundColor: '#f0fdf4',
+                      border: '1.5px solid #86efac',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '12px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ backgroundColor: '#dcfce7', padding: '8px', borderRadius: '50%', color: '#16a34a', display: 'flex' }}>
+                          <CheckCircle size={24} />
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: '800', fontSize: '15px', color: '#15803d' }}>
+                            ยินดีด้วย! บทนี้ผ่านการประเมินแล้ว (Passed ✓)
+                          </div>
+                          <div style={{ fontSize: '13px', color: '#166534', marginTop: '2px' }}>
+                            ผลงานผ่านเกณฑ์มาตรฐาน Rubric แล้ว และระบบได้ปลดล็อกบทเรียนถัดไปเรียบร้อย
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setShowOptionalSubmit({ ...showOptionalSubmit, [id]: !showOptionalSubmit[id] })}
+                        style={{
+                          fontSize: '12.5px',
+                          fontWeight: 'bold',
+                          color: '#15803d',
+                          backgroundColor: '#ffffff',
+                          border: '1px solid #bbf7d0',
+                          padding: '6px 14px',
+                          borderRadius: '8px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {showOptionalSubmit[id] ? '▲ ซ่อนแบบฟอร์มส่งงาน' : '+ ส่งผลงานฉบับปรับปรุงเพิ่มเติม (ถ้าต้องการ)'}
+                      </button>
                     </div>
                   )}
 
                   {isWaiting && (
-                    <div style={{ padding: '12px 16px', backgroundColor: '#eff6ff', color: '#1e40af', borderRadius: '8px', fontWeight: 'bold', fontSize: '13.5px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <Clock size={18} color="#2563eb" />
-                      <span>งานของคุณส่งเรียบร้อยแล้ว อยู่ระหว่างรอ Trainer & BA ตรวจ (คุณสามารถส่งไฟล์แก้ไขหรือส่งใหม่ได้ด้านล่าง)</span>
+                    <div style={{ padding: '14px 18px', backgroundColor: '#eff6ff', color: '#1e40af', borderRadius: '10px', fontWeight: 'bold', fontSize: '13.5px', display: 'flex', alignItems: 'center', gap: '10px', border: '1px solid #bfdbfe' }}>
+                      <Clock size={20} color="#2563eb" />
+                      <div>
+                        <div>งานของคุณส่งเรียบร้อยแล้ว อยู่ระหว่างรอ Trainer & BA ตรวจประเมิน</div>
+                        <div style={{ fontSize: '12px', fontWeight: 'normal', color: '#3b82f6', marginTop: '2px' }}>
+                          คุณสามารถส่งไฟล์อัปเดตเพิ่มเติมได้จากแบบฟอร์มด้านล่างหากต้องการแก้ไขก่อนการตรวจ
+                        </div>
+                      </div>
                     </div>
                   )}
 
-                  {/* PROMINENT SUBMISSION BOX */}
-                  <div style={{
-                    backgroundColor: '#fffaf5',
-                    border: '2px solid #fdba74',
-                    borderRadius: '14px',
-                    padding: '20px 22px',
-                    marginTop: '4px'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <UploadCloud size={22} color="#ea580c" />
-                        <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: '#9a3412' }}>
-                          {item.submissions.length > 0 ? `ส่งงานเพิ่มเติม / ส่งงานแก้ไข (ครั้งที่ ${item.submissions.length + 1})` : 'ส่งงานสำหรับบทนี้'}
-                        </h4>
+                  {isNeedRevision && (
+                    <div style={{ padding: '14px 18px', backgroundColor: '#fff1f2', color: '#9f1239', borderRadius: '10px', fontWeight: 'bold', fontSize: '13.5px', display: 'flex', alignItems: 'center', gap: '10px', border: '1.5px solid #fecdd3' }}>
+                      <AlertCircle size={20} color="#e11d48" />
+                      <div>
+                        <div>ผลงานยังไม่ผ่านเกณฑ์มาตรฐาน — ต้องแก้ไขและส่งตรวจใหม่ (Need Revision)</div>
+                        <div style={{ fontSize: '12px', fontWeight: 'normal', color: '#be123c', marginTop: '2px' }}>
+                          กรุณาอ่านคำติชม (Feedback) จาก Trainer ด้านบน แล้วปรับปรุงผลงานก่อนส่งใหม่อีกครั้ง
+                        </div>
                       </div>
-                      <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#64748b' }}>
-                        ผู้ส่ง: <strong style={{ color: '#0f172a' }}>{user?.fullName}</strong> ({user?.username})
-                      </span>
                     </div>
+                  )}
+
+                  {/* PROMINENT SUBMISSION BOX (ซ่อนไว้ถ้าผ่านแล้ว เว้นแต่จะกดปุ่มส่งเพิ่มเติม) */}
+                  {(!hasPassed || showOptionalSubmit[id]) && (
+                    <div style={{
+                      backgroundColor: isNeedRevision ? '#fff5f5' : hasPassed ? '#f8fafc' : '#fffaf5',
+                      border: isNeedRevision ? '2px solid #fca5a5' : hasPassed ? '1.5px solid #cbd5e1' : '2px solid #fdba74',
+                      borderRadius: '14px',
+                      padding: '20px 22px',
+                      marginTop: '4px'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <UploadCloud size={22} color={isNeedRevision ? '#dc2626' : hasPassed ? '#059669' : '#ea580c'} />
+                          <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: isNeedRevision ? '#991b1b' : hasPassed ? '#166534' : '#9a3412' }}>
+                            {hasPassed
+                              ? `ส่งผลงานฉบับปรับปรุงเพิ่มเติม (ครั้งที่ ${item.submissions.length + 1})`
+                              : isNeedRevision
+                                ? `ส่งงานแก้ไขตามคำแนะนำ (ครั้งที่ ${item.submissions.length + 1})`
+                                : isWaiting
+                                  ? `ส่งไฟล์เพิ่มเติมก่อนตรวจ (ครั้งที่ ${item.submissions.length + 1})`
+                                  : 'ส่งงานสำหรับบทนี้'}
+                          </h4>
+                        </div>
+                        <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#64748b' }}>
+                          ผู้ส่ง: <strong style={{ color: '#0f172a' }}>{user?.fullName}</strong> ({user?.username})
+                        </span>
+                      </div>
 
                     {/* Quick Demo Templates */}
                     <div style={{ marginBottom: '12px' }}>
@@ -475,10 +547,11 @@ export default function Assignments() {
                       </button>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          );
+                )}
+              </div>
+            )}
+          </div>
+        );
         })}
       </div>
     </div>

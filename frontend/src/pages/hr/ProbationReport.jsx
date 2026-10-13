@@ -127,7 +127,7 @@ export default function ProbationReport() {
         <div>
           <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
             <FileCheck size={26} color="#059669" />
-            <span>รายงานและสนับสนุนการตัดสินใจผลทดลองงาน 60 วัน (UC-15 & UC-16, BR-2)</span>
+            <span>รายงานและสนับสนุนการตัดสินใจผลทดลองงาน 60 วัน </span>
           </h1>
           <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
             ประมวลผลคะแนนการฝึกอบรม 2 เดือนแรก สนับสนุนการตัดสินใจบรรจุพนักงาน และส่งออกรายงาน (PDF / Excel)

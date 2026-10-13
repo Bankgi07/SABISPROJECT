@@ -114,7 +114,7 @@ export default function UserManagement() {
         <div>
           <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Users size={26} color="#059669" />
-            <span>จัดการบัญชีผู้ใช้และสิทธิ์การเข้าถึง (UC-14)</span>
+            <span>จัดการบัญชีผู้ใช้และสิทธิ์การเข้าถึง </span>
           </h1>
           <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
             จำแนกสิทธิ์ตามตาราง Supertype (User) และ Subtypes (Trainee, TrainerBA, HR)
@@ -277,7 +277,7 @@ export default function UserManagement() {
             }}
           >
             <h2 style={{ margin: '0 0 16px', fontSize: '18px', fontWeight: 'bold' }}>
-              {mode === 'add' ? '+ เพิ่มผู้ใช้งานใหม่ (UC-14)' : 'แก้ไขข้อมูลผู้ใช้งาน'}
+              {mode === 'add' ? '+ เพิ่มผู้ใช้งานใหม่' : 'แก้ไขข้อมูลผู้ใช้งาน'}
             </h2>
 
             <div style={{ marginBottom: '14px' }}>

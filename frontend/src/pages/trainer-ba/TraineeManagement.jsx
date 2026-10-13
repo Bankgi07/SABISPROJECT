@@ -96,7 +96,7 @@ export default function TraineeManagement() {
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Users size={26} color="#d97706" />
-          <span>จัดการพนักงานใหม่และมอบหมายแผนการเรียนรู้ (UC-9)</span>
+          <span>จัดการพนักงานใหม่และมอบหมายแผนการเรียนรู้ </span>
         </h1>
         <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
           ติดตามความก้าวหน้ารายบุคคล และกำหนด Roadmap ตามระดับทักษะและสายงาน (Dynamics Motion)
@@ -186,7 +186,7 @@ export default function TraineeManagement() {
                       gap: '4px'
                     }}
                   >
-                    <Compass size={13} /> กำหนดแผน (UC-9)
+                    <Compass size={13} /> กำหนดแผน 
                   </button>
                 </td>
               </tr>
@@ -222,7 +222,7 @@ export default function TraineeManagement() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
               <div>
                 <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#0f172a' }}>
-                  กำหนดและมอบหมายเส้นทางการเรียนรู้ (UC-9)
+                  กำหนดและมอบหมายเส้นทางการเรียนรู้ 
                 </h2>
                 <div style={{ fontSize: '12.5px', color: '#64748b', marginTop: '2px' }}>
                   พนักงาน: <strong>{selectedTrainee.Name}</strong> ({selectedTrainee.Position})

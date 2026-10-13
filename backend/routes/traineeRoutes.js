@@ -97,19 +97,28 @@ async function loadLearning(traineeId) {
   // 3. กำหนด submitMode และ blockReason
   const decorated = items.map((it) => {
     const unlocked = !!it.Unlocked;
+    const hasPassed = it.ItemStatus === 'Completed' || (it.latest && it.latest.EvalStatus === 'Passed');
+    const isWaiting = it.latest && !it.latest.EvalStatus;
+    const isNeedRevision = it.latest && it.latest.EvalStatus === 'Need_Revision';
+
     let submitMode = null;
     let blockReason = null;
 
     if (!unlocked) {
       blockReason = 'LOCKED';
-    } else if (it.ItemStatus === 'Completed' || (it.latest && it.latest.EvalStatus === 'Passed')) {
+      submitMode = 'locked';
+    } else if (hasPassed) {
       blockReason = 'COMPLETED';
-      submitMode = 'resubmit'; // อนุญาตให้ส่งใหม่/ส่งอัปเดตได้
-    } else if (it.latest && !it.latest.EvalStatus) {
+      submitMode = 'completed'; // ผ่านการประเมินแล้ว ไม่ต้องแก้ไข
+    } else if (isWaiting) {
       blockReason = 'WAITING';
-      submitMode = 'resubmit'; // อนุญาตให้ส่งไฟล์เพิ่มเติมได้
+      submitMode = 'waiting'; // รอตรวจ
+    } else if (isNeedRevision) {
+      blockReason = 'REVISION';
+      submitMode = 'resubmit'; // ตรวจแล้วไม่ผ่าน ต้องแก้ไข
     } else {
-      submitMode = it.latest ? 'resubmit' : 'new';
+      blockReason = 'IN_PROGRESS';
+      submitMode = 'new'; // ยังไม่เคยส่งงาน
     }
 
     return { ...it, submitMode, blockReason };

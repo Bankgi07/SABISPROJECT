@@ -35,10 +35,10 @@ export default function TraineeDashboard() {
 
   const { trainee, roadmap, items, averages } = data;
   const total = items.length;
-  const done = items.filter((i) => i.ItemStatus === 'Completed').length;
-  const waiting = items.filter((i) => i.blockReason === 'WAITING').length;
-  const needRevision = items.filter((i) => i.submitMode === 'resubmit').length;
-  const next = items.find((i) => i.Unlocked && i.ItemStatus !== 'Completed');
+  const done = items.filter((i) => i.ItemStatus === 'Completed' || (i.latest && i.latest.EvalStatus === 'Passed')).length;
+  const waiting = items.filter((i) => i.latest && !i.latest.EvalStatus).length;
+  const needRevision = items.filter((i) => i.latest && i.latest.EvalStatus === 'Need_Revision').length;
+  const next = items.find((i) => i.Unlocked && i.ItemStatus !== 'Completed' && !(i.latest && i.latest.EvalStatus === 'Passed'));
   const daysLeft = roadmap ? Math.ceil((new Date(roadmap.End_Date) - new Date()) / 86400000) : null;
 
   return (
@@ -91,7 +91,11 @@ export default function TraineeDashboard() {
                   <div style={small}>กำหนดส่ง {fmtDate(next.Deadline)}</div>
                 </div>
                 <Link to="/trainee/assignments" className="btn-primary" style={{ textDecoration: 'none' }}>
-                  {next.blockReason === 'WAITING' ? 'ดูสถานะงานที่ส่ง' : next.submitMode === 'resubmit' ? 'ส่งงานแก้ไข' : 'เริ่มเรียน / ส่งงาน'}
+                  {next.blockReason === 'WAITING'
+                    ? 'ดูสถานะงานที่ส่ง'
+                    : next.latest?.EvalStatus === 'Need_Revision'
+                      ? 'ส่งงานแก้ไข'
+                      : 'เริ่มเรียน / ส่งงาน'}
                 </Link>
               </div>
             ) : (
@@ -108,16 +112,32 @@ export default function TraineeDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {items.map((i) => (
-                  <tr key={i.Item_ID}>
-                    <td style={td}>{i.Seq_No}</td>
-                    <td style={{ ...td, fontWeight: 'bold' }}>{i.Title}</td>
-                    <td style={td}>{fmtDate(i.Deadline)}</td>
-                    <td style={td}>
-                      <Badge kind={!i.Unlocked ? 'Locked' : i.blockReason === 'WAITING' ? 'Waiting' : i.submitMode === 'resubmit' ? 'Need_Revision' : i.ItemStatus} />
-                    </td>
-                  </tr>
-                ))}
+                {items.map((i) => {
+                  const hasPassed = i.ItemStatus === 'Completed' || (i.latest && i.latest.EvalStatus === 'Passed');
+                  const isWaiting = i.latest && !i.latest.EvalStatus;
+                  const isNeedRevision = i.latest && i.latest.EvalStatus === 'Need_Revision';
+
+                  const badgeKind = !i.Unlocked
+                    ? 'Locked'
+                    : hasPassed
+                      ? 'Passed'
+                      : isWaiting
+                        ? 'Waiting'
+                        : isNeedRevision
+                          ? 'Need_Revision'
+                          : i.ItemStatus;
+
+                  return (
+                    <tr key={i.Item_ID}>
+                      <td style={td}>{i.Seq_No}</td>
+                      <td style={{ ...td, fontWeight: 'bold' }}>{i.Title}</td>
+                      <td style={td}>{fmtDate(i.Deadline)}</td>
+                      <td style={td}>
+                        <Badge kind={badgeKind} />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

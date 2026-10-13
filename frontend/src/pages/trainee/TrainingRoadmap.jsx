@@ -55,14 +55,27 @@ export default function TrainingRoadmap() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {items.map((i) => {
           const locked = !i.Unlocked;
-          const kind = locked ? 'Locked' : i.blockReason === 'WAITING' ? 'Waiting' : i.submitMode === 'resubmit' ? 'Need_Revision' : i.ItemStatus;
+          const hasPassed = i.ItemStatus === 'Completed' || (i.latest && i.latest.EvalStatus === 'Passed');
+          const isWaiting = i.latest && !i.latest.EvalStatus;
+          const isNeedRevision = i.latest && i.latest.EvalStatus === 'Need_Revision';
+
+          const kind = locked
+            ? 'Locked'
+            : hasPassed
+              ? 'Passed'
+              : isWaiting
+                ? 'Waiting'
+                : isNeedRevision
+                  ? 'Need_Revision'
+                  : i.ItemStatus;
+
           return (
             <div key={i.Item_ID} style={{ ...card, display: 'flex', gap: '16px', alignItems: 'center', opacity: locked ? 0.6 : 1 }}>
               <div style={{
                 width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center',
-                justifyContent: 'center', fontWeight: '800', backgroundColor: i.ItemStatus === 'Completed' ? '#d1fae5' : '#fef3c7'
+                justifyContent: 'center', fontWeight: '800', backgroundColor: hasPassed ? '#d1fae5' : '#fef3c7'
               }}>
-                {i.ItemStatus === 'Completed' ? '✓' : i.Seq_No}
+                {hasPassed ? '✓' : i.Seq_No}
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 'bold', fontSize: '16px' }}>บทที่ {i.Seq_No}: {i.Title}</div>
@@ -84,18 +97,18 @@ export default function TrainingRoadmap() {
                       style={{
                         fontSize: '12.5px',
                         fontWeight: 'bold',
-                        backgroundColor: i.ItemStatus === 'Completed' ? '#f1f5f9' : '#ea580c',
-                        color: i.ItemStatus === 'Completed' ? '#334155' : '#ffffff',
+                        backgroundColor: hasPassed ? '#f1f5f9' : '#ea580c',
+                        color: hasPassed ? '#334155' : '#ffffff',
                         padding: '6px 14px',
                         borderRadius: '6px',
                         textDecoration: 'none',
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '4px',
-                        boxShadow: i.ItemStatus === 'Completed' ? 'none' : '0 1px 3px rgba(234, 88, 12, 0.3)'
+                        boxShadow: hasPassed ? 'none' : '0 1px 3px rgba(234, 88, 12, 0.3)'
                       }}
                     >
-                      {i.ItemStatus === 'Completed' ? 'ดูผลงานและสื่อ →' : '📤 ส่งงานบทนี้ →'}
+                      {hasPassed ? 'ดูผลงานและสื่อ →' : isNeedRevision ? '⚠️ ส่งงานแก้ไข →' : '📤 ส่งงานบทนี้ →'}
                     </Link>
                   </div>
                 )}
