@@ -45,7 +45,9 @@ export default function TrainingRoadmap() {
               ผู้ดูแล: {roadmap.Trainer_Name} · ระยะเวลา {fmtDate(roadmap.Start_Date)} – {fmtDate(roadmap.End_Date)}
             </div>
           </div>
-          <Badge kind={roadmap.Status} />
+          <div style={{ alignSelf: 'flex-start' }}>
+            <Badge kind={roadmap.Status} />
+          </div>
         </div>
         <div style={{ marginTop: '14px', maxWidth: '420px' }}><ProgressBar done={done} total={items.length} /></div>
       </div>

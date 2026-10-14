@@ -1,6 +1,6 @@
+import { Shield } from 'lucide-react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { Shield, LogOut } from 'lucide-react';
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
@@ -52,9 +52,6 @@ export default function Layout({ children }) {
               gap: '6px'
             }}>
               <Shield size={13} /> Dynamics Motion · Training Management System
-            </span>
-            <span style={{ fontSize: '13px', color: '#64748b' }}>
-              SA & BIS Project (ภาคเรียนที่ 1 / 2569)
             </span>
           </div>
 

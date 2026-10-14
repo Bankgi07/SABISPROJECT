@@ -1,6 +1,6 @@
+import { ArrowRight, CheckCircle, FileCheck, LayoutDashboard, UserCheck, UserPlus, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, Users, UserCheck, FileCheck, CheckCircle, Award, ArrowRight, UserPlus } from 'lucide-react';
 import { card, h1 } from '../../components/ui';
 
 export default function HrDashboard() {
@@ -79,7 +79,7 @@ export default function HrDashboard() {
             {stats.probationReports ?? '-'} ฉบับ
           </div>
           <div style={{ fontSize: '12px', color: '#64748b' }}>
-            ตัดสินผลทดลองงาน (BR-2)
+            ตัดสินผลทดลองงาน
           </div>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default function HrDashboard() {
               <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>รายงาน Probation & สนับสนุนการตัดสินใจ </h3>
             </div>
             <p style={{ fontSize: '13.5px', color: '#64748b', margin: '0 0 16px' }}>
-              ประมวลผลคะแนนฝึกอบรม 60 วันแรก ระบบแนะนำผลการประเมิน (Decision Support BR-2) และส่งออกรายงานเป็น PDF หรือ Excel
+              ประมวลผลคะแนนฝึกอบรม 60 วันแรก ระบบแนะนำผลการประเมินและส่งออกรายงานเป็น PDF หรือ Excel
             </p>
           </div>
           <Link

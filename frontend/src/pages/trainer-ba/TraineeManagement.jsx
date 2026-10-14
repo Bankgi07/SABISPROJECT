@@ -1,6 +1,6 @@
+import { Compass, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Users, Compass, CheckCircle, AlertTriangle, Calendar, Award, Plus, ArrowRight } from 'lucide-react';
-import { card, h1, Badge, ProgressBar } from '../../components/ui';
+import { Badge, card, h1, ProgressBar } from '../../components/ui';
 
 export default function TraineeManagement() {
   const [trainees, setTrainees] = useState([]);
@@ -121,7 +121,7 @@ export default function TraineeManagement() {
       <div style={{ ...card, padding: 0, overflow: 'hidden' }}>
         <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0', backgroundColor: '#f8fafc', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontWeight: 'bold', fontSize: '15px' }}>รายชื่อพนักงานใหม่ในความดูแล ({trainees.length} คน)</span>
-          <span style={{ fontSize: '12px', color: '#64748b' }}>เกณฑ์ผ่าน BR-1: คะแนนเฉลี่ยทั้ง 3 ด้าน ≥ 2.00</span>
+          <span style={{ fontSize: '12px', color: '#64748b' }}>เกณฑ์ผ่าน : คะแนนเฉลี่ยทั้ง 3 ด้าน ≥ 2.00</span>
         </div>
 
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
@@ -134,7 +134,7 @@ export default function TraineeManagement() {
               <th style={{ padding: '12px 16px' }}>Dev</th>
               <th style={{ padding: '12px 16px' }}>Biz</th>
               <th style={{ padding: '12px 16px' }}>Comm</th>
-              <th style={{ padding: '12px 16px' }}>เกณฑ์ BR-1</th>
+              <th style={{ padding: '12px 16px' }}>เกณฑ์</th>
               <th style={{ padding: '12px 16px', textAlign: 'right' }}></th>
             </tr>
           </thead>

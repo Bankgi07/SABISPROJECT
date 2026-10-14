@@ -263,7 +263,7 @@ router.get('/trainees-summary', async (req, res) => {
       let recReason = '';
       if (isCompletedAll && passBR1) {
         recommendation = 'Passed';
-        recReason = 'เรียนจบครบทุกบทและคะแนนทั้ง 3 ด้านผ่านเกณฑ์ BR-1 (สมควรบรรจุเป็นพนักงานประจำ)';
+        recReason = 'เรียนจบครบทุกบทและคะแนนทั้ง 3 ด้านผ่านเกณฑ์ (สมควรบรรจุเป็นพนักงานประจำ)';
       } else if (!passBR1 && evalCount > 0) {
         recommendation = 'Extended';
         recReason = 'มีคะแนนบางด้านต่ำกว่าเกณฑ์ 2.00 (แนะนำให้ขยายเวลาทดลองงาน 30 วัน)';

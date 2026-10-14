@@ -1,18 +1,16 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  LayoutDashboard,
-  Compass,
-  CheckSquare,
   Award,
-  Users,
+  CheckSquare,
+  Compass,
   FileCheck,
   FolderKanban,
-  FileText,
-  UserPlus,
-  Database,
+  LayoutDashboard,
+  //Database,
   LogOut,
-  Sparkles
+  UserPlus,
+  Users
 } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Sidebar({ user }) {
   const navigate = useNavigate();
@@ -127,7 +125,7 @@ export default function Sidebar({ user }) {
             })}
           </div>
 
-          {/* Database Inspector Shortcut (Only for HR and Trainer/BA) */}
+          {/* Database Inspector Shortcut (Only for HR and Trainer/BA)
           {(user?.role === 'HR' || user?.role === 'Trainer') && (
             <div style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid #1e293b' }}>
               <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase', padding: '0 12px 8px', letterSpacing: '0.5px' }}>
@@ -154,7 +152,7 @@ export default function Sidebar({ user }) {
                 <span>ตรวจฐานข้อมูล (13 Tables)</span>
               </Link>
             </div>
-          )}
+          )}*/}
         </div>
       </div>
 

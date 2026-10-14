@@ -1,6 +1,6 @@
+import { Download, FileCheck, Printer } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { FileCheck, Printer, Download, CheckCircle, AlertTriangle, UserCheck, Shield, Award, HelpCircle } from 'lucide-react';
-import { card, h1, fmtDate, fmtScore, Badge, BR_PASS } from '../../components/ui';
+import { Badge, card, h1 } from '../../components/ui';
 
 export default function ProbationReport() {
   const [summaryList, setSummaryList] = useState([]);
@@ -81,7 +81,7 @@ export default function ProbationReport() {
     const headers = [
       'Trainee_ID', 'ชื่อ-นามสกุล', 'ตำแหน่ง', 'วันที่เริ่มงาน', 'ระดับทักษะ',
       'งานที่สำเร็จ', 'คะแนนเฉลี่ย Dev', 'คะแนนเฉลี่ย Biz', 'คะแนนเฉลี่ย Comm',
-      'คะแนนรวมเฉลี่ย', 'ผ่านเกณฑ์ BR-1', 'คำแนะนำระบบ (BR-2)', 'ผลตัดสินใจ HR', 'ข้อคิดเห็น HR'
+      'คะแนนรวมเฉลี่ย', 'ผ่านเกณฑ์', 'คำแนะนำระบบ', 'ผลตัดสินใจ HR', 'ข้อคิดเห็น HR'
     ];
 
     const rows = summaryList.map(t => {
@@ -196,7 +196,7 @@ export default function ProbationReport() {
         <div style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '12px', marginBottom: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h2 style={{ margin: 0, fontSize: '16.5px', fontWeight: 'bold', color: '#0f172a' }}>
-              ระบบสนับสนุนการตัดสินใจฝ่ายบุคคล (Decision Support System - BR-2)
+              ระบบสนับสนุนการตัดสินใจฝ่ายบุคคล
             </h2>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>
               วิเคราะห์คะแนน Rubric 3 ด้าน เพื่อประเมินสิทธิ์บรรจุเป็นพนักงานประจำ หรือขยายระยะเวลาทดลองงาน
@@ -343,7 +343,7 @@ export default function ProbationReport() {
                   marginBottom: '10px'
                 }}>
                   <div style={{ fontSize: '11.5px', fontWeight: 'bold', color: '#64748b', textTransform: 'uppercase' }}>
-                    คำแนะนำจากระบบตาม Business Rule (BR-2 Recommendation):
+                    คำแนะนำจากระบบตาม Business Rule:
                   </div>
                   <div style={{ fontSize: '16px', fontWeight: '800', color: selectedTrainee.recommendation === 'Passed' ? '#065f46' : '#b45309', margin: '4px 0 2px' }}>
                     {selectedTrainee.recommendation === 'Passed' ? '✓ แนะนำอนุมัติผ่านทดลองงาน (Passed)' :
@@ -356,7 +356,7 @@ export default function ProbationReport() {
 
                 <div style={{ fontSize: '12px', color: '#64748b' }}>
                   ทำแบบฝึกหัดแล้วเสร็จ: <strong>{selectedTrainee.completedTasks}</strong> จาก {selectedTrainee.totalTasks} บท
-                  · ผ่านเกณฑ์ BR-1: {selectedTrainee.passBR1 ? '✓ ใช่' : '✗ ไม่ผ่าน'}
+                  · ผ่านเกณฑ์ : {selectedTrainee.passBR1 ? '✓ ใช่' : '✗ ไม่ผ่าน'}
                 </div>
               </div>
             )}
@@ -375,7 +375,7 @@ export default function ProbationReport() {
             รายงานสรุปผลการประเมินการฝึกอบรมและตัดสินผลทดลองงาน 60 วัน (Probation Report)
           </h3>
           <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>
-            เอกสารทางการประกอบการพิจารณาตามเกณฑ์ทางธุรกิจ BR-2 · ประจำวันที่ {new Date().toLocaleDateString('th-TH')}
+            เอกสารทางการประกอบการพิจารณาตามเกณฑ์ทางธุรกิจ · ประจำวันที่ {new Date().toLocaleDateString('th-TH')}
           </p>
         </div>
 
@@ -390,7 +390,7 @@ export default function ProbationReport() {
               <th style={{ padding: '10px 12px' }}>Biz</th>
               <th style={{ padding: '10px 12px' }}>Comm</th>
               <th style={{ padding: '10px 12px' }}>เฉลี่ยรวม</th>
-              <th style={{ padding: '10px 12px' }}>BR-1</th>
+              <th style={{ padding: '10px 12px' }}>เกณฑ์</th>
               <th style={{ padding: '10px 12px' }}>ผลตัดสินใจ (HR)</th>
               <th style={{ padding: '10px 12px' }}>ความเห็น / หมายเหตุ</th>
             </tr>
