@@ -1,5 +1,5 @@
+import { Edit2, ExternalLink, FolderKanban, Layers, Plus, Trash2, Video } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { FolderKanban, Video, FileText, Plus, Edit2, Trash2, ExternalLink, BookOpen, Layers } from 'lucide-react';
 import { card, h1 } from '../../components/ui';
 
 export default function TaskRepository() {
@@ -379,7 +379,7 @@ export default function TaskRepository() {
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
           <form onSubmit={handleSaveMaterial} style={{ backgroundColor: '#fff', borderRadius: '14px', padding: '24px', width: '480px', maxWidth: '90vw' }}>
             <h2 style={{ margin: '0 0 16px', fontSize: '18px', fontWeight: 'bold' }}>
-              {matModal === 'add' ? '+ เพิ่มสื่อการสอนใหม่ (UC-7)' : 'แก้ไขสื่อการสอน '}
+              {matModal === 'add' ? '+ เพิ่มสื่อการสอนใหม่' : 'แก้ไขสื่อการสอน '}
             </h2>
             <div style={{ marginBottom: '14px' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px' }}>ชื่อสื่อการสอน / หัวข้อบทเรียน</label>

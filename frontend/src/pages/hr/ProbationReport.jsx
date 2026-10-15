@@ -449,7 +449,7 @@ export default function ProbationReport() {
             <div style={{ minHeight: '60px' }}></div>
             <div style={{ borderTop: '1px solid #94a3b8', width: '220px', margin: '0 auto 6px' }}></div>
             <div style={{ fontWeight: 'bold', fontSize: '13px', color: '#0f172a' }}>
-              (นาย กิตติศักดิ์ ศรีวิชัย)
+              (นาย วิชัย สอนดี)
             </div>
             <div style={{ fontSize: '12px', color: '#64748b' }}>
               ผู้จัดการแผนก / พี่เลี้ยงผู้ควบคุมการฝึกอบรม
