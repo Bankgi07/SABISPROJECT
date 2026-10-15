@@ -127,7 +127,7 @@ export default function ProbationReport() {
         <div>
           <h1 style={{ ...h1, margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
             <FileCheck size={26} color="#059669" />
-            <span>รายงานและสนับสนุนการตัดสินใจผลทดลองงาน 60 วัน </span>
+            <span>รายงานและสนับสนุนการตัดสินใจผลทดลองงาน 2 เดือน </span>
           </h1>
           <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: '13px' }}>
             ประมวลผลคะแนนการฝึกอบรม 2 เดือนแรก สนับสนุนการตัดสินใจบรรจุพนักงาน และส่งออกรายงาน (PDF / Excel)
@@ -372,7 +372,7 @@ export default function ProbationReport() {
             บริษัท ไดนามิกส์ โมชั่น จำกัด (Dynamics Motion Co., Ltd.)
           </h2>
           <h3 style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 'bold', color: '#334155' }}>
-            รายงานสรุปผลการประเมินการฝึกอบรมและตัดสินผลทดลองงาน 60 วัน (Probation Report)
+            รายงานสรุปผลการประเมินการฝึกอบรมและตัดสินผลทดลองงาน 2 เดือน (Probation Report)
           </h3>
           <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>
             เอกสารทางการประกอบการพิจารณาตามเกณฑ์ทางธุรกิจ · ประจำวันที่ {new Date().toLocaleDateString('th-TH')}

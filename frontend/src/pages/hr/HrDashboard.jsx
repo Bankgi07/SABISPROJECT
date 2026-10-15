@@ -128,7 +128,7 @@ export default function HrDashboard() {
               <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 'bold' }}>รายงาน Probation & สนับสนุนการตัดสินใจ </h3>
             </div>
             <p style={{ fontSize: '13.5px', color: '#64748b', margin: '0 0 16px' }}>
-              ประมวลผลคะแนนฝึกอบรม 60 วันแรก ระบบแนะนำผลการประเมินและส่งออกรายงานเป็น PDF หรือ Excel
+              ประมวลผลคะแนนฝึกอบรม 2 เดือน ระบบแนะนำผลการประเมินและส่งออกรายงานเป็น PDF หรือ Excel
             </p>
           </div>
           <Link

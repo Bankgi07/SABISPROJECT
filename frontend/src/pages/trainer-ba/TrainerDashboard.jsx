@@ -1,7 +1,7 @@
+import { ArrowRight, CheckCircle, Clock, Layers, LayoutDashboard, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, Users, Clock, CheckCircle, Award, BookOpen, Layers, ArrowRight } from 'lucide-react';
-import { card, h1, fmtDateTime, fmtScore } from '../../components/ui';
+import { card, fmtDateTime, h1 } from '../../components/ui';
 
 export default function TrainerDashboard() {
   const [data, setData] = useState(null);
@@ -54,7 +54,7 @@ export default function TrainerDashboard() {
             {stats.traineeCount ?? '-'}
           </div>
           <div style={{ fontSize: '12px', color: '#64748b' }}>
-            อยู่ในหลักสูตร 60 วัน
+            อยู่ในหลักสูตร 2 เดือน
           </div>
         </div>
 

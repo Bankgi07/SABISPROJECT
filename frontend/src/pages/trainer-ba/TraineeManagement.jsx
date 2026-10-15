@@ -41,7 +41,7 @@ export default function TraineeManagement() {
 
     setRoadmapForm({
       title: `Onboarding Roadmap - ${t.Name}`,
-      description: `แผนฝึกอบรม 60 วัน สำหรับ ${t.Position || 'Software Developer'} (${t.Skill_Level || 'Beginner'})`,
+      description: `แผนฝึกอบรม 2 เดือน สำหรับ ${t.Position || 'Software Developer'} (${t.Skill_Level || 'Beginner'})`,
       startDate: t.RoadmapStart || today,
       endDate: t.RoadmapEnd || twoMonthsLater,
       selectedAsgIds: assignments.map(a => a.Assignment_ID) // default all in order
@@ -130,7 +130,7 @@ export default function TraineeManagement() {
               <th style={{ padding: '12px 16px' }}>รหัส / ชื่อพนักงาน</th>
               <th style={{ padding: '12px 16px' }}>ตำแหน่ง & ทักษะ</th>
               <th style={{ padding: '12px 16px' }}>สถานะแผน Roadmap</th>
-              <th style={{ padding: '12px 16px', minWidth: '160px' }}>ความคืบหน้า (60 วัน)</th>
+              <th style={{ padding: '12px 16px', minWidth: '160px' }}>ความคืบหน้า (2 เดือน)</th>
               <th style={{ padding: '12px 16px' }}>Dev</th>
               <th style={{ padding: '12px 16px' }}>Biz</th>
               <th style={{ padding: '12px 16px' }}>Comm</th>
@@ -253,7 +253,7 @@ export default function TraineeManagement() {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px' }}>วันที่สิ้นสุด (End Date - 60 วัน)</label>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px' }}>วันที่สิ้นสุด (End Date - 2 เดือน)</label>
                 <input
                   type="date"
                   required
