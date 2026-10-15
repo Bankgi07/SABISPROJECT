@@ -1,6 +1,6 @@
+import { AlertTriangle, Award, CheckCircle, ExternalLink, Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Award, CheckCircle, AlertTriangle, ExternalLink, FileText, Send, Clock, UserCheck } from 'lucide-react';
-import { card, h1, fmtDateTime, fmtScore, Badge, BR_PASS } from '../../components/ui';
+import { Badge, BR_PASS, card, fmtDateTime, fmtScore, h1 } from '../../components/ui';
 
 export default function EvaluateTask() {
   const [submissions, setSubmissions] = useState([]);
@@ -316,7 +316,7 @@ export default function EvaluateTask() {
                     <div>
                       {isPassed ? (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 'bold', color: '#047857', backgroundColor: '#d1fae5', padding: '5px 12px', borderRadius: '999px' }}>
-                          <CheckCircle size={15} /> ผ่านเกณฑ์ BR-1 (ทุกด้าน ≥ 2.00)
+                          <CheckCircle size={15} /> ผ่านเกณฑ์ (ทุกด้าน ≥ 2.00)
                         </span>
                       ) : (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 'bold', color: '#b91c1c', backgroundColor: '#fee2e2', padding: '5px 12px', borderRadius: '999px' }}>
